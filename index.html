@@ -1,1 +1,68 @@
-123
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学笔记</title>
+    <!-- 加载依赖 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="/">数学笔记</a></h1>
+    </header>
+    <main>
+        <div id="article-list"></div>  <!-- 文章列表 -->
+        <div id="article-content"></div> <!-- 文章内容 -->
+    </main>
+
+    <script>
+        // 根据 URL 参数加载文章内容
+        const loadArticle = (articleName) => {
+            fetch(`/posts/${articleName}`)
+                .then(response => response.text())
+                .then(md => {
+                    // 渲染 Markdown 为 HTML
+                    document.getElementById('article-content').innerHTML = marked.parse(md);
+                    // 触发 KaTeX 渲染
+                    renderMathInElement(document.body, {
+                        delimiters: [
+                            { left: '$$', right: '$$', display: true },
+                            { left: '$', right: '$', display: false }
+                        ],
+                        throwOnError: false
+                    });
+                });
+        };
+
+        // 加载文章列表
+        const loadArticleList = () => {
+            fetch('/posts/list.json')
+                .then(response => response.json())
+                .then(articles => {
+                    const listHTML = articles.map(article => `
+                        <div class="article-item">
+                            <a href="?article=${article.file}">${article.title}</a>
+                            <p class="date">${article.date}</p>
+                        </div>
+                    `).join('');
+                    document.getElementById('article-list').innerHTML = listHTML;
+                });
+        };
+
+        // 根据 URL 参数决定显示内容
+        const params = new URLSearchParams(window.location.search);
+        const articleName = params.get('article');
+        if (articleName) {
+            loadArticle(articleName);
+        } else {
+            loadArticleList();
+        }
+    </script>
+</body>
+</html>
