@@ -25,6 +25,23 @@
     <main>
         <div id="article-list"></div>  <!-- 文章列表 -->
         <div id="article-content"></div> <!-- 文章内容 -->
+
+<!-- 评论容器 -->
+<div id="comments"></div>
+
+<!-- Utterances 脚本 -->
+<script>
+    const commentsDiv = document.getElementById('comments');
+    const script = document.createElement('script');
+    script.src = 'https://utteranc.es/client.js';
+    script.setAttribute('repo', 'yourname/blog');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+    commentsDiv.appendChild(script);
+</script>
+
     </main>
 
     <script>
@@ -61,6 +78,7 @@
                 });
         };
 
+
         // 根据 URL 参数决定显示内容
         const params = new URLSearchParams(window.location.search);
         const articleName = params.get('article');
@@ -70,5 +88,16 @@
             loadArticleList();
         }
     </script>
+
+//评论
+<script src="https://utteranc.es/client.js"
+        repo="cp-pan/math-blog"
+        issue-term="pathname"
+        label="comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
 </body>
 </html>
