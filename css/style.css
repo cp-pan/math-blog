@@ -1,0 +1,35 @@
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+
+.article-item {
+    margin: 15px 0;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.article-item a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 1.2em;
+}
+
+.article-item .date {
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+#article-content {
+    margin-top: 30px;
+}
+
+.katex { font-size: 1.1em !important; }
