@@ -6,6 +6,6 @@
 
 $$
 \begin{aligned}
-W^{k,p}:=\\{f\in L^{p}|\ \partial^{\alpha}f\in L^{p}(\Omega),\quad\forall|\alpha|\leq k\\}.
+W^{k,p}(\Omega):=\\{f\in L^{p}(\Omega)|\ \partial^{\alpha}f\in L^{p}(\Omega),\quad\forall|\alpha|\leq k\\}.
 \end{aligned}
 $$
