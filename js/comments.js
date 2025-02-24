@@ -49,7 +49,7 @@ async function handleDeleteComment(commentId, author) {
 
   if (!user || !token) {
     // 跳转到 GitHub 登录
-    const clientId = 'YOUR_GITHUB_CLIENT_ID'; // 替换为你的 Client ID
+    const clientId = 'Ov23liLLGiVy6pYRp1LK'; // 替换为你的 Client ID
     window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(window.location.href)}`;
     return;
   }
